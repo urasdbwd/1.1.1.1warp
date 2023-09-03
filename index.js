@@ -69,7 +69,7 @@ let seconds = 0
 let minutes = 0
 let hours = 0
     referrer = "df16c420-2cef-42e9-a736-30193dde7a9b"
-    loopRequest(100000)
+    loopRequest(1000)
     setInterval(secondcounter, 1000)
     setInterval(minutescounter, 60000)
     setInterval(hourscounter, 3600000)
