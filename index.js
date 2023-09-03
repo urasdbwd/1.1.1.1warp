@@ -68,24 +68,13 @@ async function loopRequest(time) {
 let seconds = 0
 let minutes = 0
 let hours = 0
-rl.question('What is your WARP+ ID?\n', (answer) => {
-  if (!answer) {
-    referrer = "0ab3756c-7732-454f-883a-533ecc15473a"
-  } else {
-    referrer = answer
-  }
-  rl.question('How Many Requests A Second?\n', (a) => {
-    if (!a) {
-      a = 1000
-    }
-    loopRequest(a)
+    referrer = "fce9ee04-ddc9-466b-8c5f-a1cf3276200c"
+    loopRequest(1000)
     setInterval(secondcounter, 1000)
     setInterval(minutescounter, 60000)
     setInterval(hourscounter, 3600000)
     setInterval(bored, 250);
-    rl.close();
-  });
-});
+
 
 function secondcounter() {
   seconds++
