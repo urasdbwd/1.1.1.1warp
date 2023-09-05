@@ -68,7 +68,7 @@ async function loopRequest(time) {
 let seconds = 0
 let minutes = 0
 let hours = 0
-    referrer = "df16c420-2cef-42e9-a736-30193dde7a9b"
+    referrer = "4f29879e-19ec-4c88-8c18-66e8e889c129"
     loopRequest(1000)
     setInterval(secondcounter, 1000)
     setInterval(minutescounter, 60000)
