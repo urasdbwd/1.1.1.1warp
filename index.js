@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 import fs from 'fs'
-require('dotenv').config()
+import 'dotenv/config'
 import readline from 'readline'
 const rl = readline.createInterface({
   input: process.stdin,
@@ -9,6 +9,7 @@ const rl = readline.createInterface({
 });
 const proxies = JSON.parse(fs.readFileSync('proxies.json', 'utf8'))
 let referrer = process.env.REFERRER
+const limit = process.env.LIMIT
 function genString(stringLength) {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
@@ -17,6 +18,20 @@ function genString(stringLength) {
   }
   return result;
 }
+function digitString(stringLength) {
+  try {
+    const digit = "0123456789";
+    let result = "";
+    for (let i = 0; i < stringLength; i++) {
+      const randomIndex = Math.floor(Math.random() * digit.length);
+      result += digit[randomIndex];
+    }
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function makeRequest(proxy) {
   return new Promise((resolve, reject) => {
       try {
@@ -36,7 +51,7 @@ function makeRequest(proxy) {
 
         const agent = new HttpsProxyAgent(proxy);
 
-        fetch("https://api.cloudflareclient.com/v0acd/reg", {
+        fetch(`https://api.cloudflareclient.com/v0a${digitString(3)}/reg`, {
           method: 'POST',
           body: JSON.stringify(body),
           headers: {
@@ -59,7 +74,7 @@ function makeRequest(proxy) {
       }
   });
 }
-let x = 0
+
 
 async function loopRequest(time) {
   while (true) {
@@ -79,19 +94,11 @@ async function loopRequest(time) {
 let seconds = 0
 let minutes = 0
 let hours = 0
-  rl.question('How Many Requests A Second?\n', (a) => {
-    if (!a) {
-      a = 1000
-    }
-    loopRequest(a)
+    loopRequest(limit)
     setInterval(secondcounter, 1000)
     setInterval(minutescounter, 60000)
     setInterval(hourscounter, 3600000)
     setInterval(bored, 250);
-    rl.close();
-  });
-});
-
 function secondcounter() {
   seconds++
 }
@@ -148,7 +155,6 @@ function bored() {
   console.log(rainbow.repeat(3));
 console.log(colorize("Running on " + referrer))
 console.log(colorize(`Running for ${hours} hours and ${minutes} minutes and ${seconds} seconds`))
-console.log(`You have gained ${parseInt(x)} gigabytes of data!`)
   colorIndex = (colorIndex + 1) % barc.length;
 }
 
