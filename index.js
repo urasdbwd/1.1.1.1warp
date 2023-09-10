@@ -7,7 +7,7 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 const proxies = JSON.parse(fs.readFileSync('proxies.json', 'utf8'))
-let referrer = process.env.referrer
+let referrer = process.env.REFERRER
 function genString(stringLength) {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
