@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 import fs from 'fs'
+require('dotenv').config()
 import readline from 'readline'
 const rl = readline.createInterface({
   input: process.stdin,
