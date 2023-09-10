@@ -7,7 +7,7 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 const proxies = JSON.parse(fs.readFileSync('proxies.json', 'utf8'))
-let referrer = "80804255-d7f5-4efe-823b-eaa4516ae64a"
+let referrer = process.env.referrer
 function genString(stringLength) {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
@@ -78,12 +78,6 @@ async function loopRequest(time) {
 let seconds = 0
 let minutes = 0
 let hours = 0
-rl.question('What is your WARP+ ID?\n', (answer) => {
-  if (!answer) {
-    referrer = "0ab3756c-7732-454f-883a-533ecc15473a"
-  } else {
-    referrer = answer
-  }
   rl.question('How Many Requests A Second?\n', (a) => {
     if (!a) {
       a = 1000
