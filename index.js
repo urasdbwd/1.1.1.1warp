@@ -7,7 +7,6 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
-import fetch from 'node-fetch'
 async function getProxies(url) {
     try {
         const response = await fetch(url);
