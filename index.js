@@ -21,7 +21,6 @@ async function getProxies(url) {
 // Usage
 const proxyUrl = 'https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt';
 getProxies(proxyUrl).then(proxies => {
-    proxies = procky
 
 let referrer = process.env.REFERRER
 const limit = process.env.LIMIT
