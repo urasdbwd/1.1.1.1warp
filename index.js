@@ -7,21 +7,7 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
-async function getProxies(url) {
-    try {
-        const response = await fetch(url);
-        const text = await response.text();
-        return text.split('\n').filter(line => line.trim() !== '');
-    } catch (error) {
-        console.error('Error fetching proxies:', error);
-    }
-    return [];
-}
-
-// Usage
-const proxyUrl = 'https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt';
-getProxies(proxyUrl).then(proxies => {
-
+const proxies = JSON.parse(fs.readFileSync('proxies.json', 'utf8'))
 let referrer = process.env.REFERRER
 const limit = process.env.LIMIT
 function genString(stringLength) {
@@ -171,4 +157,3 @@ console.log(colorize("Running on " + referrer))
 console.log(colorize(`Running for ${hours} hours and ${minutes} minutes and ${seconds} seconds`))
   colorIndex = (colorIndex + 1) % barc.length;
 }
-});
